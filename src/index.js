@@ -32,7 +32,10 @@ class Formsy extends React.Component {
   )
 
   componentDidMount = () => {
-    this.validateForm();
+    const { validateOnLoad } = this.props;
+    if (validateOnLoad) {
+      this.validateForm();
+    }
   }
 
   componentWillUpdate = () => {
@@ -211,8 +214,10 @@ class Formsy extends React.Component {
     if (this.inputs.indexOf(component) === -1) {
       this.inputs.push(component);
     }
-
-    this.validate(component);
+    const { validateOnLoad } = this.props;
+    if (validateOnLoad) {
+      this.validate(component);
+    }
   }
 
   // Method put on each input component to unregister
@@ -364,6 +369,7 @@ class Formsy extends React.Component {
       showError,
       showRequired,
       validationErrors,
+      validateOnLoad,
       ...nonFormsyProps
     } = this.props;
 
@@ -411,6 +417,7 @@ Formsy.defaultProps = {
   showError: () => {},
   showRequired: () => {},
   validationErrors: null,
+  validateOnLoad: true,
 };
 
 Formsy.propTypes = {
@@ -440,6 +447,7 @@ Formsy.propTypes = {
   setValue: PropTypes.func,
   showError: PropTypes.func,
   showRequired: PropTypes.func,
+  validateOnLoad: PropTypes.bool,
   validationErrors: PropTypes.object, // eslint-disable-line
 };
 
