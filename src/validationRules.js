@@ -58,10 +58,10 @@ const validations = {
     return !isExisty(value) || isEmpty(value) || value.length === length;
   },
   isGreaterThan(values, value, greaterAmount) {
-    return !isExisty(value) || isEmpty(value) || value.length > greaterAmount;
+    return !isExisty(value) || isEmpty(value) || value > greaterAmount;
   },
   isLessThan(values, value, lesserAmount) {
-    return !isExisty(value) || isEmpty(value) || value.length < lesserAmount;
+    return !isExisty(value) || isEmpty(value) || value < lesserAmount;
   },
   equals(values, value, eql) {
     return !isExisty(value) || isEmpty(value) || value === eql;
