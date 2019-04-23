@@ -315,10 +315,16 @@ class Formsy extends React.Component {
       });
     };
 
+    const errors = [];
     // Run validation again in case affected by other inputs. The
     // last component validated will run the onValidationComplete callback
     this.inputs.forEach((component, index) => {
       const validation = this.runValidation(component);
+
+      if (!validation.isValid) {
+        errors.push({ component, validation });
+      }
+
       if (validation.isValid && component.state.externalError) {
         validation.isValid = false;
       }
@@ -338,6 +344,7 @@ class Formsy extends React.Component {
         canChange: true,
       });
     }
+    return errors;
   }
 
   render = () => {

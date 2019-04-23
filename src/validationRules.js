@@ -57,6 +57,12 @@ const validations = {
   isLength(values, value, length) {
     return !isExisty(value) || isEmpty(value) || value.length === length;
   },
+  isGreaterThan(values, value, greaterAmount) {
+    return !isExisty(value) || isEmpty(value) || value.length > greaterAmount;
+  },
+  isLessThan(values, value, lesserAmount) {
+    return !isExisty(value) || isEmpty(value) || value.length < lesserAmount;
+  },
   equals(values, value, eql) {
     return !isExisty(value) || isEmpty(value) || value === eql;
   },
