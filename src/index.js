@@ -288,7 +288,7 @@ class Formsy extends React.Component {
       isRequired: validation.isRequired,
       validationError: validation.error,
       externalError: null,
-    }, this.validateForm);
+    });
   }
 
   // Validate the form by going through all child input components
