@@ -75,6 +75,15 @@ const validations = {
   minLength(values, value, length) {
     return !isExisty(value) || isEmpty(value) || value.length >= length;
   },
+  isValidPostalCode: function isValidPostalCode(values, value) {
+    return validations.matchRegexp(values, value, /^[A-Za-z]\d[A-Za-z][ -]?\d[A-Za-z]\d$/i);
+  },
+  isValidPhoneNumber: function isValidPhoneNumber(values, value) {
+    return validations.matchRegexp(values, value, /^[\+]?[(]?[0-9]{3}[)]?[-\s\.]?[0-9]{3}[-\s\.]?[0-9]{4,6}$/i);
+  },
+  isValidDate: function isValidDate(values, value) {
+    return validations.matchRegexp(values, value, /^(19|20)\d{2}\-(0[1-9]|1[0-2])\-(0[1-9]|1\d|2\d|3[01])$/i);
+  },
 };
 
 export default validations;
