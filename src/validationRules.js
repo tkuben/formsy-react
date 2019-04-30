@@ -84,6 +84,13 @@ const validations = {
   isValidDate: function isValidDate(values, value) {
     return validations.matchRegexp(values, value, /^(19|20)\d{2}\-(0[1-9]|1[0-2])\-(0[1-9]|1\d|2\d|3[01])$/i);
   },
+  isGICReady: function isGICReady(values, value) {
+    let tempvalue = value;
+    tempvalue = tempvalue.replace(/\$/g, '');
+    tempvalue = tempvalue.replace(/ /g, '');
+    tempvalue = tempvalue.replace(/,/g, '');
+    return (parseFloat(tempvalue) && parseFloat(tempvalue) > 999.99);
+  },
 };
 
 export default validations;
