@@ -86,9 +86,13 @@ const validations = {
   },
   isGICReady: function isGICReady(values, value) {
     let tempvalue = value;
-    tempvalue = tempvalue.replace(/\$/g, '');
-    tempvalue = tempvalue.replace(/ /g, '');
-    tempvalue = tempvalue.replace(/,/g, '');
+    if (tempvalue && tempvalue.length) {
+      tempvalue = tempvalue.replace(/\$/g, '');
+      tempvalue = tempvalue.replace(/ /g, '');
+      tempvalue = tempvalue.replace(/,/g, '');
+    } else {
+      tempvalue = 0;
+    }
     return (parseFloat(tempvalue) && parseFloat(tempvalue) > 999.99);
   },
 };

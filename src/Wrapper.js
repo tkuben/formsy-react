@@ -45,6 +45,7 @@ const propTypes = {
     PropTypes.string,
   ]),
   value: PropTypes.any, // eslint-disable-line react/forbid-prop-types
+  validateOnUnmount: PropTypes.bool,
 };
 
 export {
@@ -103,7 +104,9 @@ export default (Component) => {
 
     // Detach it when component unmounts
     componentWillUnmount() {
-      this.context.formsy.detachFromForm(this);
+      if (this.props.validateOnUnmount) {
+        this.context.formsy.detachFromForm(this);
+      }
     }
 
     getErrorMessage = () => {
@@ -222,6 +225,7 @@ export default (Component) => {
     validationErrors: {},
     validations: null,
     value: Component.defaultValue,
+    validateOnUnmount: true,
   };
 
   WrappedComponent.propTypes = propTypes;
