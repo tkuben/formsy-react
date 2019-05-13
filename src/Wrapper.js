@@ -104,9 +104,7 @@ export default (Component) => {
 
     // Detach it when component unmounts
     componentWillUnmount() {
-      if (this.props.validateOnUnmount) {
-        this.context.formsy.detachFromForm(this);
-      }
+      this.context.formsy.detachFromForm(this, this.props.validateOnUnmount);
     }
 
     getErrorMessage = () => {

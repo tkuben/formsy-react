@@ -222,14 +222,15 @@ class Formsy extends React.Component {
 
   // Method put on each input component to unregister
   // itself from the form
-  detachFromForm = (component) => {
+  detachFromForm = (component, validateOnUnmount) => {
     const componentPos = this.inputs.indexOf(component);
 
     if (componentPos !== -1) {
       this.inputs = this.inputs.slice(0, componentPos).concat(this.inputs.slice(componentPos + 1));
     }
-
-    this.validateForm();
+    if (validateOnUnmount) {
+      this.validateForm();  
+    }
   }
 
   // Checks if the values have changed from their initial value
